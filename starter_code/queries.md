@@ -62,8 +62,59 @@
 
 ### 12. All the companies that have been 'deadpooled' after the third year.
 
-<!-- Your Code Goes Here -->
+Lo primero que he hecho es filtrar la collección para evitar aquellos documentos cuyo founded_year y deadpooled_year no es nulo. 
+Después he creado:
+    -  `dead_founded` que compara las columnas deadpooled_year y founded_year y resulta 0 si son iguales, 1 si deadpooled es mayor que founded y -1 cuando ocurre lo contrario. 
+    - `added_year` que añade a founded year tres años
+A continuación he creado sobre las anteriores:
+    - `added_dead`que compara las columnas deadpool_year y added_year y resulta 0 si son iguales, 1 si deadpooled es mayor que added_year y -1 si ocurre lo contrario.
+Finalmente he filtrado: Sólo aquellos documentos que cumplan alguna de las siguientes condiciones:
+    - dead_founded es mayor o igual que cero y added_dead es igual a -1. Esto quiere decir que el año deadpooled es mayor que el año founded (evitamos aquellos valores en deadpooled que no son años ) y que added_dead sea menor o igual que 0 que implica que el año de deadpooled sea igual o menor que el año de fundación menos tres años.
+    - dead_founded sea menor que cero, esta condición recogería todos aquéllos documentos cuyo deadpooled_year es un número en vez de un año, y cuyo deadpooled_year sea mayor que 3.
 
+[{$match: {
+  founded_year: {$gt:0},
+  deadpooled_year: {$gt:0}
+}}, {$project: {
+name:1,
+founded_year:1,
+deadpooled_year:1,
+dead_founded:{
+  $cmp:[ 
+    '$deadpooled_year', 
+    '$founded_year' ]},
+added_year:{
+    $add:[
+      '$founded_year',
+      3]},
+}}, {$project: {
+name:1,
+founded_year:1,
+deadpooled_year:1,
+dead_founded:1,
+added_year:1,
+added_dead:{
+  $cmp:[
+    '$deadpooled_year',
+    '$added_year'
+    ]}
+}}, {$match:   {
+    $or: [
+      {
+        $and: [
+          {dead_founded:{$gte: 0}},
+          {added_dead:{$gt: 0}}
+          ]
+      },
+            {
+        $and: [
+          {dead_founded:{$lt: 0}},
+          {deadpooled_year:{$gt: 3}}
+          ]
+      }
+      ]
+      }
+}]
 ### 12. All the companies founded before 2000 that have an acquisition amount of more than 10.000.000
 
 - **`query`**: {$and:[{'acquisition.price_amount':{$gt:10000000}},{founded_year:{$lt:2000}}]}
