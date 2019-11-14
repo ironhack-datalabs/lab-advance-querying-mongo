@@ -90,3 +90,4 @@ You already know how this goes, so let's start working:
 19. All the companies that have been founded between 2000 and 2010, but have not been acquired before 2011.
 
 Happy Coding! :heart:
+ddfdfdfdf
