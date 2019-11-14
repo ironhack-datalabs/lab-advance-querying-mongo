@@ -114,16 +114,17 @@ FILTER: {$and:[{'acquisition.price_currency_code':'EUR'},{'acquisition.price_amo
 
 ### 18. All the companies that have been acquired on the first trimester of the year. Limit the search to 10 companies, and retrieve only their `name` and `acquisition` fields.
 
-{"acquisition.acquired_month":{$in:[1,2,3]}}
+FILTER: {"acquisition.acquired_month":{$in:[1,2,3]}}
 
 LIMIT: 10
 
-<!-- Your Code Goes Here -->
+PROJECT: {name:1,acquisition:1}
 
 ### 19. All the companies that have been founded between 2000 and 2010, but have not been acquired before 2011.
 
-<!-- Your Code Goes Here -->
+{$and:[{founded_year:{$gt:2000,$lt:2010}},{'acquisition.acquired_year':{$gt:2011}}]}
 
 ### BONUS. All the companies that have been 'deadpooled' after the third year.
 
-<!-- Your Code Goes Here -->
+{deadpooled_year - founded_year: {$gt:3}}
+PROJECT: {$subtract:["$deadpooled_year","$founded_year"]}
