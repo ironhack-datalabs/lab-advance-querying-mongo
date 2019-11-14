@@ -58,3 +58,9 @@ project: {"name": 1,"acquisition":1}
 limit: 10
 19. All the companies that have been founded between 2000 and 2010, but have not been acquired before 2011.
 filter: {$and: [{founded_year: {$gte: 1999,$lt: 2011}},{"acquisitions.acquired_year":{$gt:2010}}]}
+
+Bonus:
+filter: {$where: "this.deadpooled_year-this.founded_year>3"}
+quizás sea: {$or: [{"deadpooled_year": {$gte:3,$lt:20}},{$where: "this.deadpooled_year-this.founded_year>3"}]}
+
+(es que he visto que algunos documentos tienen deadpooled_year=3, deadpooled_year=4...)
