@@ -6,7 +6,7 @@
 
 We are back with our queries! :wink:
 
-We have learned some super useful query operators, that will helps us to make much better queries to retrieve the data we need. We will continue using the **Crunchbase** database we used on the last exercise.
+We have learned some super useful query operators, that will help us to make much better queries to retrieve the data we need. We will continue using the **Crunchbase** database we used on the last exercise.
 
 ## Requirements
 
