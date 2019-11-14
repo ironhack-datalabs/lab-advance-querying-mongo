@@ -67,7 +67,7 @@ LIMIT:1000
 <!-- Your Code Goes Here -->
 
 <!-- ### 12. All the companies that have been 'deadpooled' after the third year. -->
-
+{$where:"this.deadpooled_year-this.founded_year==3"} 
 
 <!-- Your Code Goes Here -->
 
