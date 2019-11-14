@@ -64,3 +64,4 @@ filter: {$where: "this.deadpooled_year-this.founded_year>3"}
 quizás sea: {$or: [{"deadpooled_year": {$gte:3,$lt:20}},{$where: "this.deadpooled_year-this.founded_year>3"}]}
 
 (es que he visto que algunos documentos tienen deadpooled_year=3, deadpooled_year=4...)
+He copiado de algún compañero, pero esto no tiene pinta de estar bien...
