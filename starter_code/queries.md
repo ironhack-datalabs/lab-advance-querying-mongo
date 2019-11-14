@@ -60,7 +60,7 @@
 
 ### 12. All the companies founded before 2000 that have an acquisition amount of more than 10.000.000
 
-<!-- Your Code Goes Here -->
+ - Filter = {$and:[{"acquisitions.price_amount":{$gt: 10000000}},{'founded_year':{$lte:2000}}]}
 
 ### 13. All the companies that have been acquired after 2010, order by the acquisition amount, and retrieve only their `name` and `acquisition` field.
 
