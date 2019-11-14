@@ -70,6 +70,7 @@
 <!-- ### 12. All the companies that have been 'deadpooled' after the third year. -->
 
 <!-- Your Code Goes Here -->
+#FILTER: {$where: "this.deadpooled_year-this.founded_year>3"}
 
 
 
