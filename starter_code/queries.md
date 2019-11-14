@@ -126,5 +126,19 @@ PROJECT: {name:1,acquisition:1}
 
 ### BONUS. All the companies that have been 'deadpooled' after the third year.
 
-{deadpooled_year - founded_year: {$gt:3}}
-PROJECT: {$subtract:["$deadpooled_year","$founded_year"]}
+2 aggregations:
+
+Stage 1:
+
+$project:
+{
+  name:1,total:{$subtract:["$deadpooled_year","$founded_year"]}
+}
+
+Stage 2:
+
+$match
+{
+  total:{$gt:3}
+}
+
