@@ -48,7 +48,7 @@ SORT: {ipo:-1}
 
 ### 10. Retrieve the 10 companies with more employees, order by the `number of employees`
 
-FILTER: {number_of_employees:{$type:16}}
+FILTER: {number_of_employees:{$ne:null}}
 SORT: {number_of_employees:-1}
 
 ### 11. All the companies founded on the second semester of the year. Limit your search to 1000 companies.
@@ -99,3 +99,4 @@ LIMIT: 10
 ### 19. All the companies that have been founded between 2000 and 2010, but have not been acquired before 2011.
 
 FILTER: {$and:[{founded_year:{$gte:2000}},{founded_year:{$lte:2010}},{"acquisition.acquired_year":{$gt:2011}}]}
+
